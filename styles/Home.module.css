@@ -12,6 +12,18 @@
   align-items: center;
 }
 
+.landing {
+  display: flex;
+  background-image: url("../public/abstract-background.jpeg");
+  background-size: cover;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  margin-bottom: 2rem;
+  color:white;
+}
+
 .footer {
   display: flex;
   flex: 1;
