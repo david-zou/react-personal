@@ -25,7 +25,7 @@ export default function ContainerBlock({ children, ...customMeta}) {
       <main className={styles.main}>
     
         <h1 className={styles.title}>
-          Welcome to David Zou's Portfolio
+          Welcome to David Zou&#39;s Portfolio
         </h1>
 
         <div className={styles.grid}>
