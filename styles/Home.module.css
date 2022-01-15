@@ -3,7 +3,6 @@
 }
 
 .main {
-  min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -14,14 +13,16 @@
 
 .landing {
   display: flex;
-  background-image: url("../public/abstract-background.jpeg");
+  background: url("../public/abstract-background.jpeg");
+  background-repeat: no-repeat;
   background-size: cover;
-  padding-left: 10rem;
-  padding-right: 10rem;
+  justify-content: center;
+  width: 100%;
   padding-top: 10rem;
   padding-bottom: 10rem;
   margin-bottom: 2rem;
   color:white;
+  text-shadow: 3px 3px 10px #111111;
 }
 
 .footer {
