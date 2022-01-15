@@ -23,11 +23,13 @@ export default function ContainerBlock({ children, ...customMeta}) {
       </Head>
 
       <main className={styles.main}>
-    
-        <h1 className={styles.title}>
-          Welcome to David Zou&#39;s Portfolio
-        </h1>
-
+        
+        <div className={styles.landing}>
+          <h1 className={styles.title}>
+            Welcome to David Zou&#39;s Portfolio
+          </h1>
+        </div>
+        
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
