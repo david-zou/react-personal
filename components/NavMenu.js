@@ -27,7 +27,7 @@ export default function NavMenu() {
 
   return (
     <div
-      className="p-2 rounded-md hover:bg-blue-400 text-white"
+      className="p-2 rounded-md hover:bg-blue-400 text-white lg:hidden"
     >
       <Menu>
 
