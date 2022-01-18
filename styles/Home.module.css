@@ -1,5 +1,5 @@
 .container {
-  padding: 0 2rem;
+
 }
 
 .main {
@@ -12,7 +12,7 @@
 }
 
 .landing {
-  display: flex;
+  display: block;
   background: url("../public/abstract-background.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
