@@ -1,4 +1,4 @@
-import * as t from ".../types"
+import * as t from "../types"
 
 const main = (state = {
     name: "guest",
