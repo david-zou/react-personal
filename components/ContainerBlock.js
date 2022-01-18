@@ -1,10 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
+// Redux packages
+import { useState } from 'react'
+import { connect } from 'react-redux'
+import { setInfo } from '../redux/actions/main'
 
-export default function ContainerBlock({ children, ...customMeta}) {
+
+function ContainerBlock(props, { children, ...customMeta}) {
   const router = useRouter();
 
   const meta = {
@@ -12,7 +17,11 @@ export default function ContainerBlock({ children, ...customMeta}) {
     description: "Default Description",
     type: "website",
     ...customMeta,
-  };
+  }
+
+  const { name, setInfo } = props
+  const [ newName, setName ] = useState("")
+
 
   return (
     <div className={styles.container}>
@@ -30,6 +39,23 @@ export default function ContainerBlock({ children, ...customMeta}) {
           </h1>
         </div>
         
+        <div
+          className="flex items-center">
+          <p>Enter a Name:</p>
+          <input
+            className="m-2"
+            type="text"
+            value={newName}
+            onChange={(e) => setName(e.target.value)}>
+          </input>
+          <button
+            onClick={() => setInfo(newName)}>
+            Submit
+          </button>
+        </div>
+        
+        <div>Welcome { name } !</div>
+
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
@@ -76,3 +102,14 @@ export default function ContainerBlock({ children, ...customMeta}) {
     </div>
   )
 }
+
+
+const mapStateToProps = state => {
+  return { name: state.main.name }
+}
+
+const mapDispatchToProps = {
+  setInfo
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContainerBlock)

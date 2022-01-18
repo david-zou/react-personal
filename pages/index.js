@@ -1,7 +1,11 @@
 import ContainerBlock from "../components/ContainerBlock"
 import Navbar from "../components/Navbar"
 
-export default function Home() {
+// Redux packages
+import { useState } from 'react'
+import { connect } from 'react-redux'
+
+function Home() {
   return (
       <div>
         <Navbar />
@@ -15,3 +19,13 @@ export default function Home() {
       
   )
 }
+
+const mapStateToProps = state => {
+  return { /* insert states here */ }
+}
+
+const mapDispatchToProps = {
+  /* insert dispatches here */
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
