@@ -3,6 +3,14 @@ import thunk from "redux-thunk"
 import { createWrapper } from "next-redux-wrapper"
 import rootReducer from "./reducers/rootReducer"
 
+// Old code without debug feature:
+
+// const middleware = [thunk]
+
+// const makeStore = () => createStore(rootReducer, compose(applyMiddleware(...middleware)))
+
+// export const wrapper = createWrapper(makeStore)
+
 const middleware = [thunk]
 
 const composeEnhancers =
