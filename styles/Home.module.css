@@ -1,9 +1,9 @@
-.container {
+/* .container {
 
-}
+} */
 
 .main {
-  padding: 4rem 0;
+  padding-bottom: 4rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,6 @@
 }
 
 .landing {
-  display: block;
   background: url("../public/abstract-background.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,8 +20,16 @@
   padding-top: 10rem;
   padding-bottom: 10rem;
   margin-bottom: 2rem;
-  color:white;
-  text-shadow: 3px 3px 10px #111111;
+}
+
+.landing .introduction {
+  padding: 2rem;
+  text-shadow: 2px 2px 4px #000000;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .footer {
@@ -56,6 +63,8 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .title,
@@ -119,6 +128,15 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.self_description {
+  font-size: 1.25rem;
+  color: white;
+}
+
+.navbar {
+  z-index: 9999;
 }
 
 @media (max-width: 600px) {

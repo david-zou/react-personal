@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
+import ProfilePicture from '../public/profile-picture.jpeg'
 
 // Redux packages
 import { useState } from 'react'
@@ -33,10 +34,28 @@ function ContainerBlock(props, { children, ...customMeta}) {
 
       <main className={styles.main}>
         
-        <div className={styles.landing}>
-          <h1 className={styles.title}>
-            Welcome to David Zou&#39;s Portfolio
-          </h1>
+        <div className={`${styles.landing} lg:grid lg:grid-cols-2 lg:gap-4`}>
+        <div className="flex justify-center lg:order-last">
+            <div className="bg-white rounded-full shadow-xl px-1 pt-1 m-auto"> 
+              <Image 
+              src={ProfilePicture}
+              className="rounded-full z-10"
+              height="200%"
+              width="200%"
+              objectFit="cover"
+              alt="Picture of Me" />
+            </div>
+          </div>
+          <div className={`${styles.introduction}`}>
+              <h2 className={styles.title}>
+                Hi, I&#39;m David Zou.
+              </h2>
+              <p className={styles.self_description}>
+                I am an IT Administrator working towards
+                a career within the rapidly growing software
+                engineering industry.
+              </p>
+          </div>
         </div>
         
         <div
