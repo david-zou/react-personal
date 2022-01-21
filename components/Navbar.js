@@ -3,6 +3,7 @@ import { useTheme } from "next-themes"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import NavMenu from "./NavMenu"
+import styles from '../styles/Home.module.css'
 
 export default function Navbar() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="sticky top-0"> { /* Enable fixed top menu */ }
+    <div className={`${styles.navbar} sticky top-0`}> { /* Enable fixed top menu */ }
       <nav className='flex items-center bg-sky-600 p-3 justify-between'>
         
         <Link href='/'>
