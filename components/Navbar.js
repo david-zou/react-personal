@@ -79,7 +79,7 @@ function Navbar(props) {
               className="hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
               onClick={() => {
                   setTheme(theme === "dark" ? "light" : "dark")
-                  setLightMode(lightMode === "dark" ? "light" : "dark")
+                  setLightMode(lightMode === "light" ? "dark" : "light")
                 }
               }
             >
