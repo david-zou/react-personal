@@ -2,7 +2,6 @@ import ContainerBlock from "../components/ContainerBlock"
 import Navbar from "../components/Navbar"
 
 // Redux packages
-import { useState } from 'react'
 import { connect } from 'react-redux'
 
 function Home() {

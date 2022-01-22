@@ -4,6 +4,9 @@ import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 import ProfilePicture from '../public/profile-picture.jpeg'
 
+// For theme state retrieval
+import { useTheme } from "next-themes"
+
 // Redux packages
 import { connect } from 'react-redux'
 import { setLightMode } from '../redux/actions/main'
@@ -20,6 +23,11 @@ function ContainerBlock(props, { children, ...customMeta}) {
   }
 
   const { lightMode, setLightMode } = props
+
+  const { theme } = useTheme();
+
+  // Needed to remember state on page refresh for redux lightMode state to work properly
+  setLightMode(theme)
 
   return (
     <div className={styles.container}>
