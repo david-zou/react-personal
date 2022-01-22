@@ -3,6 +3,10 @@ import Link from "next/link"
 import { Menu, Transition } from '@headlessui/react'
 import { useTheme } from "next-themes"
 
+// Redux packages
+import { connect } from 'react-redux'
+import { setLightMode } from '../redux/actions/main'
+
 function MenuLink(props) {
   let { href, children, ...rest } = props
   return (
@@ -12,17 +16,20 @@ function MenuLink(props) {
   )
 }
 
-export default function NavMenu() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [active, setActive] = useState(false);
+function NavMenu(props) {
+
+  const { lightMode, setLightMode } = props
+
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [active, setActive] = useState(false)
 
   const handleClick = () => {
-    setActive(!active);
+    setActive(!active)
   };
 
   useEffect(() => {
-    setMounted(true);
+    setMounted(true)
   }, []);
 
   return (
@@ -101,12 +108,14 @@ export default function NavMenu() {
                     aria-label="Theme Toggle"
                     type="button"
                     className="flex justify-end group text-gray-900 text-center text-sm hover:bg-violet-500 w-full py-2 rounded"
-                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    onClick={() => {
+                      setTheme(theme === "dark" ? "light" : "dark")
+                      setLightMode(lightMode === "dark" ? "light" : "dark")
+                    }}
                   >
                     <span
                       className=" group-hover:text-white mx-2"
                     >
-                      {theme === "dark" ? "(Dark Mode Enabled)" : "(Light Mode Enabled)"}  
                     </span>
                     <div>
                     {mounted && (
@@ -115,7 +124,7 @@ export default function NavMenu() {
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        {theme === "dark" ? (
+                        {lightMode === "dark" ? (
                           <path
                             d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
                           ></path>
@@ -136,3 +145,13 @@ export default function NavMenu() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return { lightMode: state.main.lightMode }
+}
+
+const mapDispatchToProps = {
+  setLightMode
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavMenu)

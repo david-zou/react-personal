@@ -6,7 +6,5 @@ export default function Blog() {
         <Navbar />
         Blog
       </div>
-      
-      
   )
 }
