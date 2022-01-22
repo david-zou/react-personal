@@ -131,12 +131,19 @@
 }
 
 .self_description {
+  padding: 2rem 5rem;
   font-size: 1.25rem;
   color: white;
 }
 
 .navbar {
   z-index: 9999;
+}
+
+.contact_section {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
 }
 
 @media (max-width: 600px) {
