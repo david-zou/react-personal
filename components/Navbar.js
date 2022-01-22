@@ -5,7 +5,14 @@ import Link from "next/link"
 import NavMenu from "./NavMenu"
 import styles from '../styles/Home.module.css'
 
-export default function Navbar() {
+// Redux packages
+import { connect } from 'react-redux'
+import { setLightMode } from '../redux/actions/main'
+
+function Navbar(props) {
+
+  const { lightMode, setLightMode } = props
+
   const router = useRouter();
   console.log(router.asPath);
   const { theme, setTheme } = useTheme();
@@ -60,9 +67,9 @@ export default function Navbar() {
                 Gallery
               </a>
             </Link>
-            <Link href='/about'>
+            <Link href='/blog'>
               <a className='lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-blue-400 hover:text-white'>
-                About
+                Blog
               </a>
             </Link>
             <button
@@ -70,7 +77,11 @@ export default function Navbar() {
               id="theme-toggle"
               type="button"
               className="hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => {
+                  setTheme(theme === "dark" ? "light" : "dark")
+                  setLightMode(lightMode === "dark" ? "light" : "dark")
+                }
+              }
             >
               <div>
               {mounted && (
@@ -101,3 +112,13 @@ export default function Navbar() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return { lightMode: state.main.lightMode }
+}
+
+const mapDispatchToProps = {
+  setLightMode
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

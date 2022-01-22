@@ -1,13 +1,13 @@
 import * as t from "../types"
 
 const main = (state = {
-    name: "guest",
+    lightMode: "light",
 }, action) => {
     switch(action.type){
-        case t.SET_NAME:
+        case t.SET_LIGHTMODE:
             return {
                 ...state,
-                name: action.payload
+                lightMode: action.payload
             }
         default:
             return {...state}

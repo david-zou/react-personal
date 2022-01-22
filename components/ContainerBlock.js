@@ -5,9 +5,8 @@ import styles from '../styles/Home.module.css'
 import ProfilePicture from '../public/profile-picture.jpeg'
 
 // Redux packages
-import { useState } from 'react'
 import { connect } from 'react-redux'
-import { setInfo } from '../redux/actions/main'
+import { setLightMode } from '../redux/actions/main'
 
 
 function ContainerBlock(props, { children, ...customMeta}) {
@@ -20,9 +19,7 @@ function ContainerBlock(props, { children, ...customMeta}) {
     ...customMeta,
   }
 
-  const { name, setInfo } = props
-  const [ newName, setName ] = useState("")
-
+  const { lightMode, setLightMode } = props
 
   return (
     <div className={styles.container}>
@@ -57,22 +54,6 @@ function ContainerBlock(props, { children, ...customMeta}) {
               </p>
           </div>
         </div>
-        
-        {/* <div
-          className="flex items-center">
-          <p>Enter a Name:</p>
-          <input
-            className="m-2"
-            type="text"
-            value={newName}
-            onChange={(e) => setName(e.target.value)}>
-          </input>
-          <button
-            onClick={() => setInfo(newName)}>
-            Submit
-          </button>
-        </div>
-        <div>Welcome { name } !</div> */}
 
         <div>
           <div className="font-semibold text-center">Contact me:</div>
@@ -105,38 +86,6 @@ function ContainerBlock(props, { children, ...customMeta}) {
           </div>
 
         </div>
-        
-        
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
 
       <footer className={styles.footer}>
@@ -146,7 +95,7 @@ function ContainerBlock(props, { children, ...customMeta}) {
           rel="noopener noreferrer"
         >
           Powered by{' '}
-          <span className={styles.logo}>
+          <span className={lightMode === "light" ? styles.logo : `${styles.logo} ${styles.inverted}`}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
@@ -157,11 +106,11 @@ function ContainerBlock(props, { children, ...customMeta}) {
 
 
 const mapStateToProps = state => {
-  return { name: state.main.name }
+  return { lightMode: state.main.lightMode }
 }
 
 const mapDispatchToProps = {
-  setInfo
+  setLightMode
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContainerBlock)
