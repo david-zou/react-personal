@@ -94,12 +94,12 @@ function NavMenu(props) {
               <Menu.Item>
                 {({ active }) => (
                   <MenuLink
-                    href='/about'
+                    href='/blog'
                     className={`${
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     }  flex justify-end rounded-md items-center px-2 py-2 text-sm`}
                   >
-                    About
+                    Blog
                   </MenuLink>
                 )}
               </Menu.Item>
