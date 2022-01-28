@@ -144,10 +144,41 @@
   z-index: 9999;
 }
 
-.contact_section {
+.landing_contact {
   display: flex;
   justify-content: center;
   margin: 0.5rem;
+}
+
+.contact_page {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact_form {
+  padding: 2em;
+}
+
+.contact_form input[type="email"] {
+  display:block;
+  border: 1px solid #0500;
+}
+
+.contact_form textarea {
+  display:block;
+}
+
+.contact_title {
+  margin: 0;
+  padding: 1rem;
+  line-height: 1.15;
+  font-size: 3rem;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
