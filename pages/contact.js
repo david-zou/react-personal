@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import Navbar from "../components/Navbar"
 import styles from '../styles/Home.module.css'
 
@@ -25,12 +27,11 @@ function Contact(props) {
   // form validation rules 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
-        .matches(/^[A-Za-z ]*$/, 'Please enter valid first name')
         .required('First Name is required'),
     lastName: Yup.string()
-        .matches(/^[A-Za-z ]*$/, 'Please enter valid last name')
         .required('Last name is required'),
     email: Yup.string()
+        .max(50, "Email is too long")
         .required('Email is required')
         .email('Email is invalid'),
     textMessage: Yup.string()
@@ -50,6 +51,25 @@ function Contact(props) {
       return false
   }
 
+  const [ firstName, setFirstName ] = useState('') 
+  const [ lastName, setLastName ] = useState('')
+
+  function handleFirstNameChange(data) {
+    setFirstName(data.target.value)
+  }
+
+  function handleLastNameChange(data) {
+    setLastName(data.target.value)
+  }
+
+  function handleFirstNameTrim(data) {
+    setFirstName(data.target.value.trim())
+  }
+
+  function handleLastNameTrim(data) {
+    setLastName(data.target.value.trim())
+  }
+
   return (
       <div>
         <Navbar />
@@ -65,14 +85,14 @@ function Contact(props) {
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
                   First Name
                 </label>
-                <input className={`${errors.firstName ? '' : 'is-valid-firstname'} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} name="firstName" {...register('firstName')} type="text" placeholder="First Name" />
+                <input className={`${errors.firstName ? '' : 'is-valid-firstname'} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} name="firstName" {...register('firstName')} type="text" placeholder="First Name" onChange={handleFirstNameChange} onBlur={handleFirstNameTrim} value={firstName} />
                 <div className={`${errors.firstName ? '' : 'invisible'} invalid-firstname text-red-500 text-xs italic`}>{errors.firstName?.message}</div>
               </div>
               <div className="w-full md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
                   Last Name
                 </label>
-                <input className={`${errors.lastName ? '' : 'is-valid-lastname'} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} name="lastName" type="text" {...register('lastName')} placeholder="Last Name" />
+                <input className={`${errors.lastName ? '' : 'is-valid-lastname'} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} name="lastName" type="text" {...register('lastName')} placeholder="Last Name" onChange={handleLastNameChange} onBlur={handleLastNameTrim} value={lastName} />
                 <div className={`${errors.lastName ? '' : 'invisible'} invalid-firstname text-red-500 text-xs italic`}>{errors.lastName?.message}</div>
               </div>
             </div>
