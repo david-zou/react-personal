@@ -7,7 +7,9 @@ module.exports = {
     extend: {},
   },
   mode: 'jit',
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
 }

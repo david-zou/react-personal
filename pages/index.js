@@ -1,5 +1,5 @@
-import ContainerBlock from "../components/ContainerBlock"
-import Navbar from "../components/Navbar"
+import ContainerBlock from '../components/ContainerBlock'
+import Navbar from '../components/Navbar'
 
 // Redux packages
 import { connect } from 'react-redux'
