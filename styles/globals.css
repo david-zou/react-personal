@@ -15,6 +15,10 @@ a {
   box-sizing: border-box;
 }
 
+@viewport {
+  width: 100vw; /*Sets the width of the actual viewport to the device width*/
+}
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
