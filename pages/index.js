@@ -9,8 +9,8 @@ function Home() {
       <div>
         <Navbar />
         <ContainerBlock
-          title="Welcome to David Zou's Portfolio Website"
-          description="David Zou's Portfolio Website"
+          title={"Welcome to David Zou's Portfolio Website"}
+          description={"David Zou's Portfolio Website"}
           >
         </ContainerBlock>
       </div>
