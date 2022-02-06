@@ -48,13 +48,15 @@ const PostPage = ({ frontMatter: { title, date, thumbnailUrl }, mdxSource }) => 
       <Navbar />
       <div className={styles.blog_container}>
         <div className="text-center">
-          <h1 className="underline p-1 text-5xl font-medium">{title}</h1>
-          <div className="relative w-auto h-screen">
+          { thumbnailUrl == undefined ? <></> : 
+            <div className="relative w-auto h-96">
             <Image src={thumbnailUrl} layout="fill" objectFit="contain" alt=""/>
           </div>
-          <p className="p-1 text-md font-semibold">{date}</p>
+          }
+          <h1 className="p-1 text-5xl font-medium">{title}</h1>
+          <p className="p-1 text-md font-semibold text-gray-500">{date}</p>
         </div>
-        <div className="text-justify leading-loose p-10">
+        <div className="md:px-32 lg:px-72 text-justify leading-loose p-10">
           <MDXRemote {...mdxSource} components={{ SyntaxHighlighter }} />
         </div> 
       </div>

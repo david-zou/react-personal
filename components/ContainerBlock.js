@@ -13,14 +13,13 @@ import { connect } from 'react-redux'
 import { setLightMode } from '../redux/actions/main'
 
 
-function ContainerBlock(props, { children, ...customMeta}) {
+function ContainerBlock(props) {
   const router = useRouter()
 
   const meta = {
-    title: "Default Title",
-    description: "Default Description",
+    title: props.title,
+    description: props.description,
     type: "website",
-    ...customMeta,
   }
 
   const { lightMode, setLightMode } = props
