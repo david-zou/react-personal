@@ -13,16 +13,8 @@ import { connect } from 'react-redux'
 import { setLightMode } from '../redux/actions/main'
 
 
-function ContainerBlock(props) {
+function ContainerBlock({ title, description, lightMode, setLightMode }) {
   const router = useRouter()
-
-  const meta = {
-    title: props.title,
-    description: props.description,
-    type: "website",
-  }
-
-  const { lightMode, setLightMode } = props
 
   const { theme } = useTheme();
 
@@ -32,8 +24,8 @@ function ContainerBlock(props) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
