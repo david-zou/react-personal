@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import styles from '../styles/Home.module.css'
 
@@ -68,6 +69,9 @@ function Contact(props) {
 
   return (
       <div>
+        <Head>
+          <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        </Head>
         <Navbar />
         <div className={styles.contact_page}>
 
@@ -111,7 +115,7 @@ function Contact(props) {
                 <div className={`${errors.textMessage ? '' : 'invisible'} text-red-500 text-xs italic`}>{errors.textMessage?.message}</div>
               </div>
             </div>
-            <div data-netlify-recaptcha="true"></div>
+            <div className="g-recaptcha" data-sitekey={process.env.SITE_RECAPTCHA_KEY}></div>
             <div className="md:flex md:items-center">
               <div className="form-group md:w-1/3">
                 <button type="submit" className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded">Send</button>
