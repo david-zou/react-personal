@@ -66,7 +66,6 @@ function Contact(props) {
   // formState: the state of the entire form.
   const { register, handleSubmit, setValue, reset, formState } = useForm(formOptions)
   const { errors } = formState
-  const onSubmit = (data, e) => e.preventDefault()
 
   function trimFirstName(event) {
     return setValue("firstName", event.target.value.trim())
@@ -88,7 +87,7 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
+          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg">
             <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -124,7 +123,7 @@ function Contact(props) {
                 <div className={`${errors.textMessage ? '' : 'invisible'} text-red-500 text-xs italic`}>{errors.textMessage?.message}</div>
               </div>
             </div>
-            <div className="g-recaptcha pb-3" data-netlify-recaptcha="true" data-callback="enableSubmit" data-sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY}></div>
+            <div className="g-recaptcha pb-3" data-callback="enableSubmit" data-sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY}></div>
             <div className="md:flex md:items-center">
               <div className="form-group md:w-1/3">
                 <button type="submit" className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded disabled:bg-slate-500" id="sendbutton" disabled>Send</button>
