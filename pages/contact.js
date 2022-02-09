@@ -75,7 +75,8 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form className="w-full max-w-lg" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="/?postSuccess=true">
+          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="?postSuccess=true" className="w-full max-w-lg">
+            <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
