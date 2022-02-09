@@ -33,8 +33,8 @@ function Contact(props) {
   }, []);
 
   // Handling Recaptcha Success Condition
-  function enableSubmit(){
-    document.getElementById("send-button").disabled = false;
+  function enableSubmit() {
+    document.getElementById("sendbutton").removeAttribute("disabled");
   }
 
   // form validation rules 
@@ -120,10 +120,10 @@ function Contact(props) {
                 <div className={`${errors.textMessage ? '' : 'invisible'} text-red-500 text-xs italic`}>{errors.textMessage?.message}</div>
               </div>
             </div>
-            <div className="g-recaptcha pb-2" data-sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY} data-netlify-recaptcha="true" data-callback="enableSubmit"></div>
+            <div className="g-recaptcha pb-3" data-sitekey={process.env.NEXT_PUBLIC_SITE_RECAPTCHA_KEY} data-netlify-recaptcha="true" data-callback="enableSubmit"></div>
             <div className="md:flex md:items-center">
               <div className="form-group md:w-1/3">
-                <button type="submit" className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded disabled:bg-slate-500" id="send-button" disabled="disabled">Send</button>
+                <button type="submit" className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded disabled:bg-slate-500" id="sendbutton" disabled>Send</button>
                 <button type="button" onClick={() => reset()} className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded">Reset</button>
               </div>
               <div className="md:w-2/3">
