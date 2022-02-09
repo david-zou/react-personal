@@ -1,10 +1,9 @@
-import { useState } from "react"
-
-import Navbar from "../components/Navbar"
+import { useState, useEffect } from 'react'
+import Navbar from '../components/Navbar'
 import styles from '../styles/Home.module.css'
 
 // For theme state retrieval
-import { useTheme } from "next-themes"
+import { useTheme } from 'next-themes'
 
 // Redux packages
 import { connect } from 'react-redux'
@@ -23,6 +22,14 @@ function Contact(props) {
 
   // Needed to remember state on page refresh for redux lightMode state to work properly
   setLightMode(theme)
+
+  // Handling post success
+  const [postSuccess, setPostSuccess] = useState(false)
+  useEffect(() => {
+    if ( window.location.search.includes('postSuccess=true') ) {
+      setPostSuccess(true);
+    }
+  }, []);
 
   // form validation rules 
   const validationSchema = Yup.object().shape({
@@ -51,12 +58,6 @@ function Contact(props) {
   const { register, handleSubmit, setValue, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
-  function onSubmit(data) {
-      // display form data on success
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(data, null, 4))
-      return false
-  }
-
   function trimFirstName(event) {
     return setValue("firstName", event.target.value.trim())
   }
@@ -74,7 +75,7 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
+          <form className="w-full max-w-lg" method="POST" data-netlify="true" action="/?postSuccess=true">
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
@@ -93,7 +94,7 @@ function Contact(props) {
             </div>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white" htmlFor="email">
                   E-mail
                 </label>
                 <input className={`${errors.email ? '' : 'is-valid-email'} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} name="email" type="email" {...register('email')} placeholder="Email" />
@@ -102,7 +103,7 @@ function Contact(props) {
             </div>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white" htmlFor="message">
                   Message
                 </label>
                 <textarea className={`${errors.textMessage ? '' : 'is-valid-textMessage'} no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none`} name="textMessage" {...register('textMessage')}></textarea>
@@ -115,7 +116,13 @@ function Contact(props) {
                 <button type="submit" className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded">Send</button>
                 <button type="button" onClick={() => reset()} className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded">Reset</button>
               </div>
-              <div className="md:w-2/3"></div>
+              <div className="md:w-2/3">
+                {postSuccess && (
+                  <p style={{ color: 'green'}}>
+                    Successfully submitted form!
+                  </p>
+                )}
+              </div>
             </div>
           </form>
         </div>
