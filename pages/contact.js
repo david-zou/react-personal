@@ -36,6 +36,9 @@ function Contact(props) {
   function enableSubmit() {
     document.getElementById("sendbutton").removeAttribute("disabled");
   }
+  useEffect(() => {
+    window.enableSubmit = enableSubmit
+  })
 
   // form validation rules 
   const validationSchema = Yup.object().shape({
@@ -135,6 +138,7 @@ function Contact(props) {
               </div>
             </div>
           </form>
+          <script type="text/javascript"></script>
         </div>
       </div>
   )
