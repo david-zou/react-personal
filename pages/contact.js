@@ -66,7 +66,7 @@ function Contact(props) {
   // formState: the state of the entire form.
   const { register, handleSubmit, setValue, reset, formState } = useForm(formOptions)
   const { errors } = formState
-  const onSubmit = (e) => e.preventDefault()
+  const onSubmit = (data, e) => e.preventDefault()
 
   function trimFirstName(event) {
     return setValue("firstName", event.target.value.trim())
