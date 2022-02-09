@@ -24,10 +24,10 @@ function Contact(props) {
   setLightMode(theme)
 
   // Handling post success
-  const [postSuccess, setPostSuccess] = useState(false)
+  const [success, setSuccess] = useState(false)
   useEffect(() => {
-    if ( window.location.search.includes('postSuccess=true') ) {
-      setPostSuccess(true);
+    if ( window.location.search.includes('success=true') ) {
+      setSuccess(true);
     }
   }, []);
 
@@ -75,18 +75,18 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form name="contact" method="POST" data-netlify="true" action="?postSuccess=true" className="w-full max-w-lg">
+          <form name="contact" method="POST" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg">
             <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white" htmlFor="firstName">
                   First Name
                 </label>
                 <input className={`${errors.firstName ? '' : 'is-valid-firstname'} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} type="text" name="firstName" {...register('firstName')} placeholder="First Name" onBlur={trimFirstName} />
                 <div className={`${errors.firstName ? '' : 'invisible'} invalid-firstname text-red-500 text-xs italic`}>{errors.firstName?.message}</div>
               </div>
               <div className="w-full md:w-1/2 px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white" htmlFor="lastName">
                   Last Name
                 </label>
                 <input className={`${errors.lastName ? '' : 'is-valid-lastname'} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} name="lastName" type="text" {...register('lastName')} placeholder="Last Name" onBlur={trimLastName} />
@@ -104,7 +104,7 @@ function Contact(props) {
             </div>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white" htmlFor="message">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white" htmlFor="textMessage">
                   Message
                 </label>
                 <textarea className={`${errors.textMessage ? '' : 'is-valid-textMessage'} no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none`} name="textMessage" {...register('textMessage')}></textarea>
@@ -118,7 +118,7 @@ function Contact(props) {
                 <button type="button" onClick={() => reset()} className="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mx-1 rounded">Reset</button>
               </div>
               <div className="md:w-2/3">
-                {postSuccess && (
+                {success && (
                   <p style={{ color: 'green'}}>
                     Successfully submitted form!
                   </p>
