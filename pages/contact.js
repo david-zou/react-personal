@@ -88,7 +88,7 @@ function Contact(props) {
     })
     .then(() => {
       console.log("Success POST!")
-      event.preventDefault()
+      // event.stopPropagation()
     })
     .catch(error => console.log(error))
   }
