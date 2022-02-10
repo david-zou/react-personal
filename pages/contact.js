@@ -26,11 +26,11 @@ function Contact(props) {
 
   // Handling post success
   const [success, setSuccess] = useState(false)
-  useEffect(() => {
-    if ( window.location.search.includes('success=true') ) {
-      setSuccess(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if ( window.location.search.includes('success=true') ) {
+  //     setSuccess(true);
+  //   }
+  // }, []);
 
   // Handling Recaptcha Success Condition (can only access 'document' from useEffect in NextJS)
   useEffect(() => {
@@ -89,6 +89,7 @@ function Contact(props) {
     })
     .then(() => {
       console.log("Success POST!")
+      setSuccess(true)
     })
     .catch(error => console.log(error))
   }
@@ -113,7 +114,7 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg" onSubmit={handleSubmit}>
+          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" className="w-full max-w-lg" onSubmit={handleSubmit}>
             <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
