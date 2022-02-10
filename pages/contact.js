@@ -76,7 +76,8 @@ function Contact(props) {
       .join("&");
   }
   
-  function onSubmit(event) {
+  function onSubmit(data, event) {
+    console.log("form data: " + JSON.stringify(data))
     event.stopPropagation()
   }
 
