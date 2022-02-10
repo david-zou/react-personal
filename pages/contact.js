@@ -76,21 +76,8 @@ function Contact(props) {
       .join("&");
   }
   
-  function onSubmit(data, event) {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact",
-                     "firstName": data.firstName,
-                     "lastName": data.lastName,
-                     "email": data.email,
-                     "textMessage": data.textMessage }),
-    })
-    .then(() => {
-      console.log("Success POST!")
-      // event.stopPropagation()
-    })
-    .catch(error => console.log(error))
+  function onSubmit(event) {
+    event.stopPropagation()
   }
 
   function trimFirstName(event) {
