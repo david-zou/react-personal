@@ -35,7 +35,7 @@ function Contact(props) {
   // Handling Recaptcha Success Condition (can only access 'document' from useEffect in NextJS)
   useEffect(() => {
     function enableSubmit() {
-      document.getElementById("sendbutton").removeAttribute("disabled");
+      document.getElementById("sendbutton").removeAttribute("disabled")
     }
     window.enableSubmit = enableSubmit
   })
@@ -64,8 +64,24 @@ function Contact(props) {
   // handleSubmit: receives form data if validation is successful.
   // setValue: used to set value for onBlur lifecycle so react-hook-form can detect the change for validation.
   // formState: the state of the entire form.
-  const { register, setValue, reset, formState } = useForm(formOptions)
+  const { register, handleSubmit, setValue, reset, formState } = useForm(formOptions)
   const { errors } = formState
+
+  function onSubmit(data, event) {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact",
+                     "firstName": data.firstName,
+                     "lastName": data,lastName,
+                     "email": data.email,
+                     "textMessage": data.textMessage,
+                    })
+    })
+    .then(() => console.log("Success POST!"))
+    .catch(error => console.log(error))
+    event.preventDefault()
+  }
 
   function trimFirstName(event) {
     return setValue("firstName", event.target.value.trim())
@@ -87,7 +103,7 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg">
+          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
             <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
