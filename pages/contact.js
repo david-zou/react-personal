@@ -68,7 +68,7 @@ function Contact(props) {
   const { errors } = formState
 
   function onSubmit(data, event) {
-    fetch("davidszou.com/contact", {
+    fetch("contact", {
       method: "POST",
       body: { "firstName": data.firstName,
               "lastName": data.lastName,
