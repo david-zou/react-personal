@@ -64,7 +64,7 @@ function Contact(props) {
   // handleSubmit: receives form data if validation is successful.
   // setValue: used to set value for onBlur lifecycle so react-hook-form can detect the change for validation.
   // formState: the state of the entire form.
-  const { register, handleSubmit, setValue, reset, formState } = useForm(formOptions)
+  const { register, setValue, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
   function encode(data) {
@@ -76,7 +76,7 @@ function Contact(props) {
       .join("&");
   }
   
-  function onSubmit(data, event) {
+  function handleSubmit(data, event) {
     fetch("https://davidszou.com/contact?success=true", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -112,7 +112,7 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
+          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg" onSubmit={handleSubmit}>
             <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
