@@ -32,6 +32,11 @@ function Contact(props) {
     }
   }, []);
 
+  // Handling Recaptcha Success Condition
+  // function enableSubmit() {
+  //   document.getElementById("sendbutton").removeAttribute("disabled");
+  // }
+
   // form validation rules 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -71,6 +76,11 @@ function Contact(props) {
       <div>
         <Head>
           <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+          <script>
+            function enableSubmit() {
+              document.getElementById("sendbutton").removeAttribute("disabled")
+            }
+          </script>
         </Head>
         <Navbar />
         <div className={styles.contact_page}>
