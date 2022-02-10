@@ -32,14 +32,6 @@ function Contact(props) {
     }
   }, []);
 
-  // Handling Recaptcha Success Condition
-  function enableSubmit() {
-    document.getElementById("sendbutton").removeAttribute("disabled");
-  }
-  useEffect(() => {
-    window.enableSubmit = enableSubmit
-  })
-
   // form validation rules 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -64,7 +56,7 @@ function Contact(props) {
   // handleSubmit: receives form data if validation is successful.
   // setValue: used to set value for onBlur lifecycle so react-hook-form can detect the change for validation.
   // formState: the state of the entire form.
-  const { register, handleSubmit, setValue, reset, formState } = useForm(formOptions)
+  const { register, setValue, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
   function trimFirstName(event) {
