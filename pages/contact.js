@@ -76,23 +76,8 @@ function Contact(props) {
       .join("&");
   }
   
-  function handleSubmit(event, ...params) {
-    console.log('What is data:', JSON.stringify(event))
-
-    event.preventDefault()
-    // fetch("?success=true", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //   body: encode({ "form-name": "contact",
-    //                  "firstName": data.firstName,
-    //                  "lastName": data.lastName,
-    //                  "email": data.email,
-    //                  "textMessage": data.textMessage }),
-    // })
-    // .then(() => {
-    //   console.log("Success POST!")
-    // })
-    // .catch(error => console.log(error))
+  function handleSubmit(event) {
+    return event.preventDefault()
   }
 
   function trimFirstName(event) {
@@ -115,7 +100,7 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact/?success=true" className="w-full max-w-lg" onSubmit={handleSubmit}>
+          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact?success=true" className="w-full max-w-lg" onSubmit={handleSubmit}>
             <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
