@@ -37,6 +37,7 @@ function Contact(props) {
     function enableSubmit() {
       document.getElementById("sendbutton").removeAttribute("disabled");
     }
+    window.enableSubmit = enableSubmit
   })
 
   // form validation rules 
