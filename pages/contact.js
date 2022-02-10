@@ -77,7 +77,6 @@ function Contact(props) {
   }
   
   function onSubmit(data, event) {
-    event.preventDefault()
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -87,7 +86,10 @@ function Contact(props) {
                      "email": data.email,
                      "textMessage": data.textMessage }),
     })
-    .then(() => console.log("Success POST!"))
+    .then(() => {
+      console.log("Success POST!")
+      event.preventDefault()
+    })
     .catch(error => console.log(error))
   }
 
