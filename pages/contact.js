@@ -32,10 +32,12 @@ function Contact(props) {
     }
   }, []);
 
-  // Handling Recaptcha Success Condition
-  // function enableSubmit() {
-  //   document.getElementById("sendbutton").removeAttribute("disabled");
-  // }
+  // Handling Recaptcha Success Condition (can only access 'document' from useEffect in NextJS)
+  useEffect(() => {
+    function enableSubmit() {
+      document.getElementById("sendbutton").removeAttribute("disabled");
+    }
+  })
 
   // form validation rules 
   const validationSchema = Yup.object().shape({
@@ -76,11 +78,6 @@ function Contact(props) {
       <div>
         <Head>
           <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-          <script>
-            function enableSubmit() {
-              document.getElementById("sendbutton").removeAttribute("disabled")
-            }
-          </script>
         </Head>
         <Navbar />
         <div className={styles.contact_page}>
