@@ -77,8 +77,19 @@ function Contact(props) {
   }
   
   function onSubmit(data, event) {
-    console.log("form data: " + JSON.stringify(data))
-    event.stopPropagation()
+    fetch("https://davidszou.com/contact?success=true", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact",
+                     "firstName": data.firstName,
+                     "lastName": data.lastName,
+                     "email": data.email,
+                     "textMessage": data.textMessage }),
+    })
+    .then(() => {
+      console.log("Success POST!")
+    })
+    .catch(error => console.log(error))
   }
 
   function trimFirstName(event) {
