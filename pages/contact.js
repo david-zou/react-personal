@@ -67,17 +67,28 @@ function Contact(props) {
   const { register, handleSubmit, setValue, reset, formState } = useForm(formOptions)
   const { errors } = formState
 
+  function encode(data) {
+    return Object.keys(data)
+      .map(
+        (key) =>
+          encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  }
+  
   function onSubmit(data, event) {
-    fetch("contact", {
+    event.preventDefault()
+    fetch("/", {
       method: "POST",
-      body: { "firstName": data.firstName,
-              "lastName": data.lastName,
-              "email": data.email,
-              "textMessage": data.textMessage }
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact",
+                     "firstName": data.firstName,
+                     "lastName": data.lastName,
+                     "email": data.email,
+                     "textMessage": data.textMessage }),
     })
     .then(() => console.log("Success POST!"))
     .catch(error => console.log(error))
-    event.preventDefault()
   }
 
   function trimFirstName(event) {
