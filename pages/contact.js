@@ -77,6 +77,7 @@ function Contact(props) {
   }
   
   function handleSubmit(data, event) {
+    event.preventDefault()
     fetch("https://davidszou.com/contact?success=true", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -88,7 +89,6 @@ function Contact(props) {
     })
     .then(() => {
       console.log("Success POST!")
-      event.preventDefault()
     })
     .catch(error => console.log(error))
   }
