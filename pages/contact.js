@@ -76,23 +76,23 @@ function Contact(props) {
       .join("&");
   }
   
-  function handleSubmit(data, ...params) {
-    console.log('What is data:', data)
-    console.log('What is the rest of the params?', params)
-    // event.preventDefault()
-    fetch("?success=true", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact",
-                     "firstName": data.firstName,
-                     "lastName": data.lastName,
-                     "email": data.email,
-                     "textMessage": data.textMessage }),
-    })
-    .then(() => {
-      console.log("Success POST!")
-    })
-    .catch(error => console.log(error))
+  function handleSubmit(event, ...params) {
+    console.log('What is data:', JSON.stringify(event))
+
+    event.preventDefault()
+    // fetch("?success=true", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    //   body: encode({ "form-name": "contact",
+    //                  "firstName": data.firstName,
+    //                  "lastName": data.lastName,
+    //                  "email": data.email,
+    //                  "textMessage": data.textMessage }),
+    // })
+    // .then(() => {
+    //   console.log("Success POST!")
+    // })
+    // .catch(error => console.log(error))
   }
 
   function trimFirstName(event) {
