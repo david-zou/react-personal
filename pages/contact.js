@@ -68,13 +68,12 @@ function Contact(props) {
   const { errors } = formState
 
   function onSubmit(data, event) {
-    console.log("form data: " + JSON.stringify(data))
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: { "form-name": "contact",
               "firstName": data.firstName,
-              "lastName": data,lastName,
+              "lastName": data.lastName,
               "email": data.email,
               "textMessage": data.textMessage,
             }
