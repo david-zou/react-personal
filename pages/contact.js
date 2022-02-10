@@ -76,9 +76,9 @@ function Contact(props) {
       .join("&");
   }
   
-  function handleSubmit(event) {
-    return event.preventDefault()
-  }
+  // function handleSubmit(event) {
+  //   return event.preventDefault()
+  // }
 
   function trimFirstName(event) {
     return setValue("firstName", event.target.value.trim())
@@ -100,7 +100,7 @@ function Contact(props) {
             Contact Me
           </h2>
 
-          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact?success=true" className="w-full max-w-lg" onSubmit={handleSubmit}>
+          <form name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true" action="contact?success=true" className="w-full max-w-lg">
             <input type="hidden" name="form-name" value="contact" />
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
