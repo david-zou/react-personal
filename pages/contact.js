@@ -68,15 +68,12 @@ function Contact(props) {
   const { errors } = formState
 
   function onSubmit(data, event) {
-    fetch("/", {
+    fetch("contact/?success=true", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: { "form-name": "contact",
-              "firstName": data.firstName,
+      body: { "firstName": data.firstName,
               "lastName": data.lastName,
               "email": data.email,
-              "textMessage": data.textMessage,
-            }
+              "textMessage": data.textMessage }
     })
     .then(() => console.log("Success POST!"))
     .catch(error => console.log(error))
